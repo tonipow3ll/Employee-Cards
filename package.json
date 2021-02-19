@@ -1,0 +1,28 @@
+{
+  "name": "employee-cards",
+  "version": "1.0.0",
+  "description": "An application to create a directory of current and new employees",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "jest": "^26.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonipow3ll/Employee-Cards.git"
+  },
+  "author": "Toni Powell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tonipow3ll/Employee-Cards/issues"
+  },
+  "homepage": "https://github.com/tonipow3ll/Employee-Cards#readme"
+}
