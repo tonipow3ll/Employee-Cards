@@ -25,9 +25,14 @@ makeTeam = () => {
      },
      {
          type: 'input',
-         name: 'employee-id',
+         name: 'email',
          message: 'Please enter this Managers email',
      },
+     {
+        type: 'input',
+        name: 'office',
+        message: 'Please enter this Managers office number',
+    },
      {
          type: 'list',
          name: 'employee-type',
@@ -44,6 +49,7 @@ makeTeam = () => {
     })
 }
 
+makeTeam()
 // code for creating HTML file 
 // const finalTeam = makeTeam(answers);
 
