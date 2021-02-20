@@ -43,3 +43,5 @@ makeTeam = () => {
         console.log(err);
     })
 }
+
+makeTeam()
