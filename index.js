@@ -44,4 +44,10 @@ makeTeam = () => {
     })
 }
 
-makeTeam()
+// code for creating HTML file 
+// const finalTeam = makeTeam(answers);
+
+//     fs.writeFile('index.html', finalTeam, (err) => {
+//         err? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+//     })
+
