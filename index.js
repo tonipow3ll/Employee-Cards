@@ -69,7 +69,7 @@ makeTeam = () => {
                     newIntern();
                     break;
                     case "Thats everyone!":
-                    createTeam();
+                    makeHTML();
                     break;
             }
         })
@@ -81,7 +81,7 @@ newEngineer = () => {
      .prompt([
      {
          type: 'input',
-         name: 'name',
+         name: 'Engineername',
          message: 'Please enter Engineers name',
      },
      {
@@ -91,12 +91,12 @@ newEngineer = () => {
      },
      {
          type: 'input',
-         name: 'email',
+         name: 'engineeremail',
          message: 'Please enter this Engineers email',
      },
      {
         type: 'input',
-        name: 'office',
+        name: 'github',
         message: 'Please enter this Engineers Github username',
     }
     ])
@@ -116,7 +116,7 @@ newEngineer = () => {
         .prompt([
             {
                 type: 'input',
-                name: 'name',
+                name: 'internname',
                 message: "What is this interns name?"
             },
             {
@@ -126,7 +126,7 @@ newEngineer = () => {
             },
             {
                 type: 'input',
-                name: 'email',
+                name: 'internemail',
                 message: "What is this interns email?"
             },
             {
@@ -154,7 +154,7 @@ makeTeam()
 // BELOW CODE AND WRITE FILE CODE CURRENTLY BREAKS - APP QUITS BEFORE PROMPTS ARE ANSWERED 
 // const createFinalTeam = createTeam(answers);
 
-function createTeam(){
+const createTeam = (answers) => 
  // INSERT HTML FILE HERE 
  `<!DOCTYPE html>
  <html lang="en">
@@ -191,13 +191,13 @@ function createTeam(){
                      </div>
                      <div class="media-content">
                        <p class="title is-4">Manager</p>
-                       <p class="subtitle is-6">${answers.managername}</p>
+                       <p class="subtitle is-6"></p>
                      </div>
                    </div>
                
                    <div class="content">
                      <a target="_blank" href="mailto: ">Email</a>
-                     <p>Office Number:${answers.office} </p>
+                     <p>Office Number: </p>
                    </div>
                  </div>
                </div>
@@ -253,9 +253,9 @@ function createTeam(){
      
  </body>
  </html>`
+
+
+const makeHTML = () => { fs.writeFile('index.html', createTeam(), (err) => {
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+    })
 }
-
-// fs.writeFile('index.html', createFinalTeam, (err) => {
-//     err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
-//     })
-
