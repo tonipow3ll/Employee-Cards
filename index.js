@@ -32,28 +32,150 @@ makeTeam = () => {
         type: 'input',
         name: 'office',
         message: 'Please enter this Managers office number',
-    },
-     {
-         type: 'list',
-         name: 'employee-type',
-         message: 'What type of employee is this?',
-         choices: ['Engineer', 'Intern']
     }
     ])
     .then((answers) => {
         let manager = new Manager(answers.name, answers.id, answers.email, answers.office)
-        theTeam.push(manager)
+        theTeam.push(manager);
+        newMember();
     })
     .catch(function(err){
         console.log(err);
     })
 }
 
+ function newMember(){
+   // let teamMember = 
+   inquirer.prompt([
+            {
+                type: 'list',
+                name: 'typeEmployee',
+                message: 'What type of employee would you like to add?',
+                choices: ['Engineer', 'Intern', 'Thats everyone!']
+           }
+        //    Switch statement works, changed 'employee-type' to 'typeEmployee', program didn't like "answers.employee-type"
+        ]).then((answers) => {
+            switch(answers.typeEmployee){
+                case "Engineer":
+                    newEngineer();
+                    break;
+                case "Intern":
+                    newIntern();
+                    break;
+            }
+
+    function newEngineer(){
+        inquirer.prompt([
+                        {
+                        type: 'input',
+                        name: 'name',
+                        message: 'What is your employees name?'
+                        },
+                        {
+                            type: 'input',
+                            name: 'employee-id',
+                            message: 'What is this employees ID?'
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'What is this employees email?'
+                        },
+                        {
+                            type: 'input',
+                            name: 'github',
+                            message: 'What is this employees Github user name?'
+                        },
+                    ])
+    }
+
+    function newIntern(){
+            inquirer.prompt([
+                            {
+                                type: 'input',
+                                name: 'name',
+                                message: "What is this interns name?"
+                            },
+                            {
+                                type: 'input',
+                                name: 'employee-id',
+                                message: "What is this interns ID #?"
+                            },
+                            {
+                                type: 'input',
+                                name: 'email',
+                                message: "What is this interns email?"
+                            },
+                            {
+                                type: 'input',
+                                name: 'school',
+                                message: "What is this interns School?"
+                            },
+                        ])
+
+    }
+
+
+    //         let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+    //         theTeam.push(engineer)
+    //     if (answers === 'Engineer'){
+    //         inquirer.prompt([
+    //             {
+    //             type: 'input',
+    //             name: 'name',
+    //             message: 'What is your employees name?'
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'employee-id',
+    //                 message: 'What is this employees ID?'
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'email',
+    //                 message: 'What is this employees email?'
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'github',
+    //                 message: 'What is this employees Github user name?'
+    //             },
+        
+    //         ])
+    //     }
+    //     else if (answers === 'Intern'){
+    //         inquirer.prompt([
+    //             {
+    //                 type: 'input',
+    //                 name: 'name',
+    //                 message: "What is this interns name?"
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'employee-id',
+    //                 message: "What is this interns ID #?"
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'email',
+    //                 message: "What is this interns email?"
+    //             },
+    //             {
+    //                 type: 'input',
+    //                 name: 'school',
+    //                 message: "What is this interns School?"
+    //             },
+    //         ])
+    //     }
+     })
+}
+
+
 makeTeam()
 // code for creating HTML file 
 // const finalTeam = makeTeam(answers);
 
-//     fs.writeFile('index.html', finalTeam, (err) => {
-//         err? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
-//     })
+    // fs.writeFile('index.html', finalTeam, (err) => {
+    //     err? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+    // })
 
