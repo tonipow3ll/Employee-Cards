@@ -63,112 +63,79 @@ makeTeam = () => {
                     newIntern();
                     break;
             }
-
-    function newEngineer(){
-        inquirer.prompt([
-                        {
-                        type: 'input',
-                        name: 'name',
-                        message: 'What is your employees name?'
-                        },
-                        {
-                            type: 'input',
-                            name: 'employee-id',
-                            message: 'What is this employees ID?'
-                        },
-                        {
-                            type: 'input',
-                            name: 'email',
-                            message: 'What is this employees email?'
-                        },
-                        {
-                            type: 'input',
-                            name: 'github',
-                            message: 'What is this employees Github user name?'
-                        },
-                    ])
+        })
     }
-
-    function newIntern(){
-            inquirer.prompt([
-                            {
-                                type: 'input',
-                                name: 'name',
-                                message: "What is this interns name?"
-                            },
-                            {
-                                type: 'input',
-                                name: 'employee-id',
-                                message: "What is this interns ID #?"
-                            },
-                            {
-                                type: 'input',
-                                name: 'email',
-                                message: "What is this interns email?"
-                            },
-                            {
-                                type: 'input',
-                                name: 'school',
-                                message: "What is this interns School?"
-                            },
-                        ])
-
-    }
-
-
-    //         let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
-    //         theTeam.push(engineer)
-    //     if (answers === 'Engineer'){
-    //         inquirer.prompt([
-    //             {
-    //             type: 'input',
-    //             name: 'name',
-    //             message: 'What is your employees name?'
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'employee-id',
-    //                 message: 'What is this employees ID?'
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'email',
-    //                 message: 'What is this employees email?'
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'github',
-    //                 message: 'What is this employees Github user name?'
-    //             },
         
-    //         ])
-    //     }
-    //     else if (answers === 'Intern'){
-    //         inquirer.prompt([
-    //             {
-    //                 type: 'input',
-    //                 name: 'name',
-    //                 message: "What is this interns name?"
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'employee-id',
-    //                 message: "What is this interns ID #?"
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'email',
-    //                 message: "What is this interns email?"
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'school',
-    //                 message: "What is this interns School?"
-    //             },
-    //         ])
-    //     }
-     })
+
+newEngineer = () => {
+    inquirer
+     .prompt([
+     {
+         type: 'input',
+         name: 'name',
+         message: 'Please enter Engineers name',
+     },
+     {
+         type: 'input',
+         name: 'employee-id',
+         message: 'Please enter this Engineers ID',
+     },
+     {
+         type: 'input',
+         name: 'email',
+         message: 'Please enter this Engineers email',
+     },
+     {
+        type: 'input',
+        name: 'office',
+        message: 'Please enter this Engineers Github username',
+    }
+    ])
+    .then((answers) => {
+        let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+        theTeam.push(engineer);
+        newMember();
+    })
+    .catch(function(err){
+        console.log(err);
+    })
 }
+
+    newIntern = () => {
+        inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: "What is this interns name?"
+            },
+            {
+                type: 'input',
+                name: 'employee-id',
+                message: "What is this interns ID #?"
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: "What is this interns email?"
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: "What is this interns School?"
+            },
+        ])
+        .then((answers) => {
+            let intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+            theTeam.push(intern);
+            newMember();
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
+    
+
 
 
 makeTeam()
