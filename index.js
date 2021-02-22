@@ -1,3 +1,7 @@
+//  Inquirer working as it should
+// need to add HTML to this file, and export it to a folder (see created base in dist folder)
+// write tests
+
 
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
@@ -10,6 +14,7 @@ const employee = new Employee();
 
 const theTeam = [];
 
+// calls on Managers information first - assuming there is only 1 manager. 
 makeTeam = () => {
     inquirer
      .prompt([
@@ -44,8 +49,9 @@ makeTeam = () => {
     })
 }
 
+// asks if you are adding a new Engineer, or new Intern - based on answer inquirer will prompt different questions. 
+// if else statement did not work here - switch statement did... why?
  function newMember(){
-   // let teamMember = 
    inquirer.prompt([
             {
                 type: 'list',
