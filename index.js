@@ -30,7 +30,7 @@ makeTeam = () => {
      },
      {
          type: 'input',
-         name: 'employee-id',
+         name: 'employeeId',
          message: 'Please enter this Managers ID',
      },
      {
@@ -45,7 +45,7 @@ makeTeam = () => {
     }
     ])
     .then((answers) => {
-        let manager = new Manager(answers.name, answers.id, answers.email, answers.office)
+        let manager = new Manager(answers.managername, answers.employeeId, answers.email, answers.office)
         theTeam.push(manager);
         newMember();
     })
@@ -63,7 +63,8 @@ makeTeam = () => {
                 name: 'typeEmployee',
                 message: 'What type of employee would you like to add?',
                 choices: ['Engineer', 'Intern', 'Thats everyone!']
-           }
+           } , 
+           // makeManager()
         //    Switch statement works, changed 'employee-type' to 'typeEmployee', program didn't like "answers.employee-type"
         ]).then((answers) => {
             switch(answers.typeEmployee){
@@ -86,12 +87,12 @@ newEngineer = () => {
      .prompt([
      {
          type: 'input',
-         name: 'Engineername',
+         name: 'engineername',
          message: 'Please enter Engineers name',
      },
      {
          type: 'input',
-         name: 'employee-id',
+         name: 'employeeId',
          message: 'Please enter this Engineers ID',
      },
      {
@@ -126,7 +127,7 @@ newEngineer = () => {
             },
             {
                 type: 'input',
-                name: 'employee-id',
+                name: 'employeeId',
                 message: "What is this interns ID #?"
             },
             {
@@ -152,16 +153,44 @@ newEngineer = () => {
     
 
 
-// upon app load, app will prompt user for "Manger Info" then execute based on inputs
+// upon app load, app will prompt user for "Manager Info" then execute based on inputs
 makeTeam()
-// code for creating HTML file 
 
-// HTML file is being made now, BUT - manager name is returning 'undefined'. 
-// if i change it to ${answer.managername} it breaks
-// ${manager.name} shows - 'Manager' 
+// function createTeam(typeEmployee) {
+//   // console.log(typeEmployee, "yo yo yo")
+//   switch(typeEmployee){
+//     case "Engineer":
+//         makeEngineer();
+//         break;
+//     case "Intern":
+//         makeIntern();
+//         break;
+//         case "Thats everyone!":
+//         makeHTML();
+//         break;
+//   }
+// }
 
 
-const createTeam = (answers) => 
+
+// function makeManager(){
+//   let managerFile = fs.readFileSync('./dist/manager.html', 'utf8');
+//   managerFile = managerFile.replace('{{name}}', theTeam.managername);
+// }
+
+// function makeEngineer(){
+//   let engineerFile = fs.readFileSync('./dist/engineer.html', 'utf8');
+//   engineerFile = engineerFile .replace('{{engineername}}', Employee.engineername);
+// }
+
+
+// function makeIntern(){
+//   let internFile = fs.readFileSync('./dist/intern.html' ,'utf8');
+//   internFile = internFile .replace('{{internname}}', Employee.internname);
+// }
+
+
+const createTeam = () => 
  // INSERT HTML FILE HERE 
  `<!DOCTYPE html>
  <html lang="en">
@@ -261,8 +290,21 @@ const createTeam = (answers) =>
  </body>
  </html>`
 
-
-const makeHTML = (answers) => { fs.writeFile('index.html', createTeam(answers), (err) => {
-    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
-    })
+const makeHTML = () => { fs.writeFile('main.html', createTeam(), (err) => {
+  err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+})
 }
+
+
+
+
+
+
+
+
+// code for creating HTML file all broken - split HTML into different files, trying a different way 
+
+// HTML file is being made now, BUT - manager name is returning 'undefined'. 
+// if i change it to ${answer.managername} it breaks
+// ${manager.name} shows - 'Manager' 
+
