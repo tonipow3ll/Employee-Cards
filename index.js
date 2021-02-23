@@ -2,6 +2,9 @@
 // need to add HTML to this file, and export it to a folder (see created base in dist folder)
 // write tests
 
+// post MVP:
+// add validation for name, email, ID
+
 
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
@@ -13,6 +16,8 @@ const fs = require('fs');
 const employee = new Employee();
 
 const theTeam = [];
+
+let manager;
 
 // calls on Managers information first - assuming there is only 1 manager. 
 makeTeam = () => {
@@ -151,8 +156,10 @@ newEngineer = () => {
 makeTeam()
 // code for creating HTML file 
 
-// BELOW CODE AND WRITE FILE CODE CURRENTLY BREAKS - APP QUITS BEFORE PROMPTS ARE ANSWERED 
-// const createFinalTeam = createTeam(answers);
+// HTML file is being made now, BUT - manager name is returning 'undefined'. 
+// if i change it to ${answer.managername} it breaks
+// ${manager.name} shows - 'Manager' 
+
 
 const createTeam = (answers) => 
  // INSERT HTML FILE HERE 
@@ -191,7 +198,7 @@ const createTeam = (answers) =>
                      </div>
                      <div class="media-content">
                        <p class="title is-4">Manager</p>
-                       <p class="subtitle is-6"></p>
+                       <p class="subtitle is-6">${Manager.name}</p>
                      </div>
                    </div>
                
@@ -255,7 +262,7 @@ const createTeam = (answers) =>
  </html>`
 
 
-const makeHTML = () => { fs.writeFile('index.html', createTeam(), (err) => {
+const makeHTML = (answers) => { fs.writeFile('index.html', createTeam(answers), (err) => {
     err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
     })
 }
