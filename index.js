@@ -1,13 +1,10 @@
 // TO DO 
 // in order of importance
 // write tests
-// fix email links
-// clean up HTML templates some - fix styling, maybe remove columns, let each card take full width - for simplicitys sake. 
 // add validation for name, email, and ID's 
   // ID's should only take # inputs, names only strings, emails should be formatted in imanemail@email.com
-
-// post MVP:
-// add validation for name, email, ID
+// ***once testing, and validation is done - if possible***
+  // refactor code so engineer, intern, manager functions are in their own file. Will have to export the functions and import them to this file. 
 
 
 const Employee = require("./lib/employee");
@@ -22,7 +19,7 @@ const fs = require('fs');
 
 const employee = new Employee();
 
-// const theTeam = [];
+// Object of arrays, allows us to push different information into the array depending on 'employee type', this is what lets us loop over the code and add multiple managers, engineers, etc without the HTML writing over itself or breaking
 const teamOBJ = {
   managers: [],
   engineers: [],
