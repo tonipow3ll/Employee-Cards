@@ -1,6 +1,7 @@
 // TO DO 
 // in order of importance
 // write tests
+// fix email links
 // clean up HTML templates some - fix styling, maybe remove columns, let each card take full width - for simplicitys sake. 
 // add validation for name, email, and ID's 
   // ID's should only take # inputs, names only strings, emails should be formatted in imanemail@email.com
@@ -15,7 +16,9 @@ const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { create } = require("domain");
+
+// i don't remember adding this..not sure if i need or if this is a live server thing?
+// const { create } = require("domain");
 
 const employee = new Employee();
 
@@ -175,38 +178,6 @@ newIntern = () => {
 // ================================================================
 makeTeam()
 
-// function createTeam(typeEmployee) {
-//   // console.log(typeEmployee, "yo yo yo")
-//   switch(typeEmployee){
-//     case "Engineer":
-//         makeEngineer();
-//         break;
-//     case "Intern":
-//         makeIntern();
-//         break;
-//         case "Thats everyone!":
-//         makeHTML();
-//         break;
-//   }
-// }
-
-
-
-// function makeManager(){
-//   let managerFile = fs.readFileSync('./dist/manager.html', 'utf8');
-//   managerFile = managerFile.replace('{{name}}', theTeam.managername);
-// }
-
-// function makeEngineer(){
-//   let engineerFile = fs.readFileSync('./dist/engineer.html', 'utf8');
-//   engineerFile = engineerFile .replace('{{engineername}}', Employee.engineername);
-// }
-
-
-// function makeIntern(){
-//   let internFile = fs.readFileSync('./dist/intern.html' ,'utf8');
-//   internFile = internFile .replace('{{internname}}', Employee.internname);
-// }
 
 // ================================================================
 // Start of HTML file - need to fix styling
@@ -268,8 +239,8 @@ const makeHTML = () => {
   // teamOBJ.managers.forEach(manager => {
   //   console.log(createManagerCard(manager))
   // })
-  fs.writeFile('main.html', createTeam(), (err) => {
-    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+  fs.writeFile('./final/main.html', createTeam(), (err) => {
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *final* folder to see the finished product. ')
   })
 }
 
