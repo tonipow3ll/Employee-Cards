@@ -192,6 +192,7 @@ const createTeam = () =>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <title>Employee Cards</title>
   </head>
@@ -202,31 +203,31 @@ const createTeam = () =>
         <h1 class="title has-text-centered">
           My Team
         </h1>
-        <!-- <p class="subtitle">
-              Small subtitle
-            </p> -->
       </div>
     </section>
   
   
-    <div class="columns has-text-centered">
+    <div class="columns is-centered has-text-centered">
       <!-- MANAGER -->
-      <div class="column is-one-third">
-  
-  
+      <div class="column is-two-thirds has-text-centered is-centered">
         <div class="card is-one-third has-text-centered ">
   
    ${createManagerCollection()}
         </div>
       </div>
+    </div>
       <!-- ENGINEER -->
+    <div class="columns has-text-centered is-centered">
       <div class="column is-one-third">
       ${createEngineerCollection()}
       </div>
   
       <!-- INTERN -->
       <div class="column is-one-third">
+        <div class="card is-one-third has-text-centered ">
     ${createInternCollection()}
+         </div>
+     </div>
     </div>
   
   </body>
@@ -255,14 +256,14 @@ function createManagerCard(manager) {
       <div class="media-left">
       </div>
       <div class="media-content">
-        <p class="title is-4">Manager</p>
+        <p class="title is-4">Manager <i class="fas fa-briefcase"></i></p>
         <p class="subtitle is-6">${manager.name}</p>
       </div>
     </div>
   
     <div class="content">
       <p>Employee ID: ${manager.id}</p>
-      <a target="_blank" href="mailto: ">${manager.email}</a>
+      <a target="_blank" href="mailto:${manager.email}">${manager.email}</a>
       <p>Office Number: ${manager.office}</p>
     </div>
   </div>
@@ -293,15 +294,15 @@ function createEngineerCard(engineer) {
         <div class="media-left">
         </div>
         <div class="media-content">
-          <p class="title is-4">Engineer</p>
+          <p class="title is-4">Engineer <i class="fas fa-glasses"></i></p>
           <p class="subtitle is-6">${engineer.name}</p>
         </div>
       </div>
 
       <div class="content">
         <p>Employee ID: ${engineer.id}</p>
-        <a target="_blank" href="mailto: ">${engineer.email}</a>
-        <p><a target="_blank" href="https://github.com/${engineer.github}">Github:${engineer.github}</a></p>
+        <a target="_blank" href="mailto:${engineer.email}">${engineer.email}</a>
+        <p><a target="_blank" href="https://github.com/${engineer.github}">Github</a></p>
       </div>
     </div>
   </div>`
@@ -328,14 +329,14 @@ function createInternCard(intern) {
       <div class="media-left">
       </div>
       <div class="media-content">
-        <p class="title is-4">Intern</p>
+        <p class="title is-4">Intern <i class="fas fa-user-graduate"></i></p>
         <p class="subtitle is-6">${intern.name}</p>
       </div>
     </div>
 
     <div class="content">
     <p>Intern ID: ${intern.id}</p>
-      <a target="_blank" href="mailto: ">${intern.email}</a>
+      <a target="_blank" href="mailto:${intern.email}">${intern.email}</a>
       <p>School: ${intern.school}</p>
       <br>
 
