@@ -1,6 +1,9 @@
-//  Inquirer working as it should
-// need to add HTML to this file, and export it to a folder (see created base in dist folder)
+// TO DO 
+// in order of importance
 // write tests
+// clean up HTML templates some - fix styling, maybe remove columns, let each card take full width - for simplicitys sake. 
+// add validation for name, email, and ID's 
+  // ID's should only take # inputs, names only strings, emails should be formatted in imanemail@email.com
 
 // post MVP:
 // add validation for name, email, ID
@@ -12,148 +15,164 @@ const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { create } = require("domain");
 
 const employee = new Employee();
 
-const theTeam = [];
+// const theTeam = [];
+const teamOBJ = {
+  managers: [],
+  engineers: [],
+  interns: []
+}
 
 let manager;
 
-// calls on Managers information first - assuming there is only 1 manager. 
+// ON PAGE LOAD - ASKS FOR MANAGER INFO 1ST, THERE IS THE OPTION TO ADD MORE MANAGERS
 makeTeam = () => {
-    inquirer
-     .prompt([
-     {
-         type: 'input',
-         name: 'managername',
-         message: 'Please enter Managers name',
-     },
-     {
-         type: 'input',
-         name: 'employeeId',
-         message: 'Please enter this Managers ID',
-     },
-     {
-         type: 'input',
-         name: 'email',
-         message: 'Please enter this Managers email',
-     },
-     {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'managername',
+        message: 'Please enter Managers name',
+      },
+      {
+        type: 'input',
+        name: 'employeeId',
+        message: 'Please enter this Managers ID',
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter this Managers email',
+      },
+      {
         type: 'input',
         name: 'office',
         message: 'Please enter this Managers office number',
-    }
+      }
     ])
     .then((answers) => {
-        let manager = new Manager(answers.managername, answers.employeeId, answers.email, answers.office)
-        theTeam.push(manager);
-        newMember();
+      let manager = new Manager(answers.managername, answers.employeeId, answers.email, answers.office)
+      teamOBJ.managers.push(manager);
+      newMember();
     })
-    .catch(function(err){
-        console.log(err);
+    .catch(function (err) {
+      console.log(err);
     })
 }
 
-// asks if you are adding a new Engineer, or new Intern - based on answer inquirer will prompt different questions. 
+// ================================================================================================================================
+// after the 'maketeam' function runs, newMember runs - asks what type of employee user would like to add next, then prompts based off of that
+// ================================================================================================================================
 // if else statement did not work here - switch statement did... why?
- function newMember(){
-   inquirer.prompt([
-            {
-                type: 'list',
-                name: 'typeEmployee',
-                message: 'What type of employee would you like to add?',
-                choices: ['Engineer', 'Intern', 'Thats everyone!']
-           } , 
-           // makeManager()
-        //    Switch statement works, changed 'employee-type' to 'typeEmployee', program didn't like "answers.employee-type"
-        ]).then((answers) => {
-            switch(answers.typeEmployee){
-                case "Engineer":
-                    newEngineer();
-                    break;
-                case "Intern":
-                    newIntern();
-                    break;
-                    case "Thats everyone!":
-                    makeHTML();
-                    break;
-            }
-        })
+function newMember() {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'typeEmployee',
+      message: 'What type of employee would you like to add?',
+      choices: ['Engineer', 'Intern', 'Manager', 'Thats everyone!']
+    },
+    //    Switch statement works, changed 'employee-type' to 'typeEmployee', program didn't like "answers.employee-type"
+  ]).then((answers) => {
+    switch (answers.typeEmployee) {
+      case "Engineer":
+        newEngineer();
+        break;
+      case "Intern":
+        newIntern();
+        break;
+        case "Manager":
+          makeTeam();
+          break;
+      case "Thats everyone!":
+        makeHTML();
+        break;
     }
-        
+  })
+}
 
+// ================================================================
+// function/prompts for adding an engineer
+// ================================================================
 newEngineer = () => {
-    inquirer
-     .prompt([
-     {
-         type: 'input',
-         name: 'engineername',
-         message: 'Please enter Engineers name',
-     },
-     {
-         type: 'input',
-         name: 'employeeId',
-         message: 'Please enter this Engineers ID',
-     },
-     {
-         type: 'input',
-         name: 'engineeremail',
-         message: 'Please enter this Engineers email',
-     },
-     {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'engineername',
+        message: 'Please enter Engineers name',
+      },
+      {
+        type: 'input',
+        name: 'employeeId',
+        message: 'Please enter this Engineers ID',
+      },
+      {
+        type: 'input',
+        name: 'engineeremail',
+        message: 'Please enter this Engineers email',
+      },
+      {
         type: 'input',
         name: 'github',
         message: 'Please enter this Engineers Github username',
-    }
+      }
     ])
     // can i change the below to promise.then ?? , promise.catch
     .then((answers) => {
-        let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
-        theTeam.push(engineer);
-        newMember();
+      let engineer = new Engineer(answers.engineername, answers.employeeId, answers.engineeremail, answers.github)
+      teamOBJ.engineers.push(engineer);
+      newMember();
     })
-    .catch(function(err){
-        console.log(err);
+    .catch(function (err) {
+      console.log(err);
+    })
+}
+// ================================================================
+// function/prompts for adding a new intern
+// ================================================================
+
+newIntern = () => {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'internname',
+        message: "What is this interns name?"
+      },
+      {
+        type: 'input',
+        name: 'employeeId',
+        message: "What is this interns ID #?"
+      },
+      {
+        type: 'input',
+        name: 'internemail',
+        message: "What is this interns email?"
+      },
+      {
+        type: 'input',
+        name: 'school',
+        message: "What is this interns School?"
+      },
+    ])
+    .then((answers) => {
+      let intern = new Intern(answers.internname, answers.employeeId, answers.internemail, answers.school)
+      teamOBJ.interns.push(intern);
+      newMember();
+    })
+    .catch(function (err) {
+      console.log(err);
     })
 }
 
-    newIntern = () => {
-        inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'internname',
-                message: "What is this interns name?"
-            },
-            {
-                type: 'input',
-                name: 'employeeId',
-                message: "What is this interns ID #?"
-            },
-            {
-                type: 'input',
-                name: 'internemail',
-                message: "What is this interns email?"
-            },
-            {
-                type: 'input',
-                name: 'school',
-                message: "What is this interns School?"
-            },
-        ])
-        .then((answers) => {
-            let intern = new Intern(answers.name, answers.id, answers.email, answers.school)
-            theTeam.push(intern);
-            newMember();
-        })
-        .catch(function(err){
-            console.log(err);
-        })
-    }
-    
 
-
+// ================================================================
 // upon app load, app will prompt user for "Manager Info" then execute based on inputs
+// ================================================================
 makeTeam()
 
 // function createTeam(typeEmployee) {
@@ -189,117 +208,184 @@ makeTeam()
 //   internFile = internFile .replace('{{internname}}', Employee.internname);
 // }
 
+// ================================================================
+// Start of HTML file - need to fix styling
+// ================================================================
 
-const createTeam = () => 
- // INSERT HTML FILE HERE 
- `<!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-     <title>Employee Cards</title>
- </head>
- <body>
-     <section class="hero is-small is-primary mb-3">
-         <div class="hero-body">
-           <h1 class="title has-text-centered">
-             My Team
-           </h1>
-           <!-- <p class="subtitle">
-             Small subtitle
-           </p> -->
-         </div>
-       </section>
- 
- 
-     <div class="columns has-text-centered">
-       <!-- MANAGER -->
-         <div class="column is-one-third">
-           
- 
-             <div class="card is-one-third has-text-centered ">
- 
-                 <div class="card-content">
-                   <div class="media">
-                     <div class="media-left">
-                     </div>
-                     <div class="media-content">
-                       <p class="title is-4">Manager</p>
-                       <p class="subtitle is-6">${Manager.name}</p>
-                     </div>
-                   </div>
-               
-                   <div class="content">
-                     <a target="_blank" href="mailto: ">Email</a>
-                     <p>Office Number: </p>
-                   </div>
-                 </div>
-               </div>
-           
-         </div>
-         <!-- ENGINEER -->
-         <div class="column is-one-third">
-           
-             <div class="card is-one-third has-text-centered ">
-                
-                 <div class="card-content">
-                   <div class="media">
-                     <div class="media-left">
-                     </div>
-                     <div class="media-content">
-                       <p class="title is-4">Engineer</p>
-                       <p class="subtitle is-6">Name</p>
-                     </div>
-                   </div>
-               
-                   <div class="content">
-                     <a target="_blank" href="mailto: ">Email</a>
-                     <p><a target="_blank" href="https://github.com/tonipow3ll">Github</a></p>
-                   </div>
-                 </div>
-               </div>
-         </div>
- 
-         <!-- INTERN -->
-         <div class="column is-one-third">
-             <div class="card is-one-third has-text-centered ">
-                
-                 <div class="card-content">
-                   <div class="media">
-                     <div class="media-left">
-                     </div>
-                     <div class="media-content">
-                       <p class="title is-4">Intern</p>
-                       <p class="subtitle is-6">Name</p>
-                     </div>
-                   </div>
-               
-                   <div class="content">
-                     <a target="_blank" href="mailto: ">Email</a>
-                     <p>School</p>
-                     <br>
-                    
-                   </div>
-                 </div>
-               </div>
-         </div>
-     </div>
-     
- </body>
- </html>`
+const createTeam = () =>
+  // INSERT HTML FILE HERE 
+  `<!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Employee Cards</title>
+  </head>
+  
+  <body>
+    <section class="hero is-small is-primary mb-3">
+      <div class="hero-body">
+        <h1 class="title has-text-centered">
+          My Team
+        </h1>
+        <!-- <p class="subtitle">
+              Small subtitle
+            </p> -->
+      </div>
+    </section>
+  
+  
+    <div class="columns has-text-centered">
+      <!-- MANAGER -->
+      <div class="column is-one-third">
+  
+  
+        <div class="card is-one-third has-text-centered ">
+  
+   ${createManagerCollection()}
+        </div>
+      </div>
+      <!-- ENGINEER -->
+      <div class="column is-one-third">
+      ${createEngineerCollection()}
+      </div>
+  
+      <!-- INTERN -->
+      <div class="column is-one-third">
+    ${createInternCollection()}
+    </div>
+  
+  </body>
+  
+  </html>`
 
-const makeHTML = () => { fs.writeFile('main.html', createTeam(), (err) => {
-  err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
-})
+  // FUNCTION FOR MAKING FILE 
+const makeHTML = () => {
+  // console.log(teamOBJ)
+  // teamOBJ.managers.forEach(manager => {
+  //   console.log(createManagerCard(manager))
+  // })
+  fs.writeFile('main.html', createTeam(), (err) => {
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *FILE LOCATION* to see the final product. ')
+  })
 }
 
+// ================================================================
+// functions for creating 'manager cards'
+// ================================================================
+function createManagerCard(manager) {
+  return `<div class="card is-one-third has-text-centered ">
+   
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+      </div>
+      <div class="media-content">
+        <p class="title is-4">Manager</p>
+        <p class="subtitle is-6">${manager.name}</p>
+      </div>
+    </div>
+  
+    <div class="content">
+      <p>Employee ID: ${manager.id}</p>
+      <a target="_blank" href="mailto: ">${manager.email}</a>
+      <p>Office Number: ${manager.office}</p>
+    </div>
+  </div>
+  </div>`
+}
+// ================================================================
+// iterate over each array in teamOBJ, create an 'managercard' for EACH manager. This allows a user to add more than 1 manager if applicable 
+// ================================================================
 
+function createManagerCollection(){
+  let managerCollection = "";
+  teamOBJ.managers.forEach(manager => {
+    managerCollection += createManagerCard(manager);
+  })
+  return managerCollection;
+}
 
+// ================================================================
+// functions for creating 'engineer cards'
+// ================================================================
 
+function createEngineerCard(engineer) {
+  return `
+  <div class="card is-one-third has-text-centered ">
 
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+        </div>
+        <div class="media-content">
+          <p class="title is-4">Engineer</p>
+          <p class="subtitle is-6">${engineer.name}</p>
+        </div>
+      </div>
 
+      <div class="content">
+        <p>Employee ID: ${engineer.id}</p>
+        <a target="_blank" href="mailto: ">${engineer.email}</a>
+        <p><a target="_blank" href="https://github.com/${engineer.github}">Github:${engineer.github}</a></p>
+      </div>
+    </div>
+  </div>`
+}
+// ================================================================
+// iterate over each array in teamOBJ, create an 'engineercard' for EACH engineer. 
+// ================================================================
+function createEngineerCollection(){
+  let engineerCollection = "";
+  teamOBJ.engineers.forEach(engineer => {
+    engineerCollection += createEngineerCard(engineer);
+  })
+  return engineerCollection;
+}
+
+// ================================================================
+// functions for creating 'intern cards'
+// ================================================================
+function createInternCard(intern) {
+  return `<div class="card is-one-third has-text-centered ">
+  
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+      </div>
+      <div class="media-content">
+        <p class="title is-4">Intern</p>
+        <p class="subtitle is-6">${intern.name}</p>
+      </div>
+    </div>
+
+    <div class="content">
+    <p>Intern ID: ${intern.id}</p>
+      <a target="_blank" href="mailto: ">${intern.email}</a>
+      <p>School: ${intern.school}</p>
+      <br>
+
+    </div>
+  </div>
+</div>
+</div>`
+}
+// ================================================================
+// iterate over each array in teamOBJ, create an 'interncard' for EACH intern. 
+// ================================================================
+
+function createInternCollection(){
+  let internCollection = "";
+  teamOBJ.interns.forEach(intern => {
+    internCollection += createInternCard(intern);
+  })
+  return internCollection;
+}
+// function to create manager card in for each
+// 
 
 
 // code for creating HTML file all broken - split HTML into different files, trying a different way 
