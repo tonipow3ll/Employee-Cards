@@ -1,6 +1,5 @@
 // TO DO 
 // in order of importance
-// write tests
 // add validation for name, email, and ID's 
   // ID's should only take # inputs, names only strings, emails should be formatted in imanemail@email.com
 // ***once testing, and validation is done - if possible***
@@ -36,11 +35,23 @@ makeTeam = () => {
         type: 'input',
         name: 'managername',
         message: 'Please enter Managers name',
+        validate: function (managername){
+          if (managername === ""){
+              return "Field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
         name: 'employeeId',
         message: 'Please enter this Managers ID',
+        validate: function (employeeId){
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
+              return "Please enter a valid ID number, field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
@@ -51,6 +62,12 @@ makeTeam = () => {
         type: 'input',
         name: 'office',
         message: 'Please enter this Managers office number',
+        validate: function (office){
+          if (office === NaN || isNaN(office) || office === ""){
+              return "Please enter a valid office number, field cannot be left blank";
+          } 
+         return true; 
+      }
       }
     ])
     .then((answers) => {
@@ -104,11 +121,23 @@ newEngineer = () => {
         type: 'input',
         name: 'engineername',
         message: 'Please enter Engineers name',
+        validate: function (engineername){
+          if (engineername === ""){
+              return "Field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
         name: 'employeeId',
         message: 'Please enter this Engineers ID',
+        validate: function (employeeId){
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
+              return "Please enter a valid ID number, field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
@@ -141,12 +170,24 @@ newIntern = () => {
       {
         type: 'input',
         name: 'internname',
-        message: "What is this interns name?"
+        message: "What is this interns name?",
+        validate: function (internname){
+          if (internname === ""){
+              return "Field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
         name: 'employeeId',
-        message: "What is this interns ID #?"
+        message: "What is this interns ID #?",
+        validate: function (employeeId){
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
+              return "Please enter a valid ID number, field cannot be left blank";
+          } 
+         return true; 
+      }
       },
       {
         type: 'input',
@@ -237,8 +278,8 @@ const makeHTML = () => {
   // teamOBJ.managers.forEach(manager => {
   //   console.log(createManagerCard(manager))
   // })
-  fs.writeFile('./dist/main.html', createTeam(), (err) => {
-    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check the folder named *dist* to see the finished product. ')
+  fs.writeFile('./final/main.html', createTeam(), (err) => {
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check the folder named *final* to see the finished product. ')
   })
 }
 
@@ -267,9 +308,9 @@ function createManagerCard(manager) {
   </div>
   </div>`
 }
-// ================================================================
+// ============================================================================================================================================
 // iterate over each array in teamOBJ, create an 'managercard' for EACH manager. This allows a user to add more than 1 manager if applicable 
-// ================================================================
+// ============================================================================================================================================
 
 function createManagerCollection(){
   let managerCollection = "";
