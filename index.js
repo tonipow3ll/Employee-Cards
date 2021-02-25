@@ -237,8 +237,8 @@ const makeHTML = () => {
   // teamOBJ.managers.forEach(manager => {
   //   console.log(createManagerCard(manager))
   // })
-  fs.writeFile('./final/main.html', createTeam(), (err) => {
-    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check the folder named *final* to see the finished product. ')
+  fs.writeFile('./dist/main.html', createTeam(), (err) => {
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check the folder named *dist* to see the finished product. ')
   })
 }
 
@@ -261,7 +261,7 @@ function createManagerCard(manager) {
     <div class="content">
     <p class="subtitle is-6">${manager.name}</p>
       <p>Employee ID: ${manager.id}</p>
-      <a target="_blank" href="mailto:${manager.email}">${manager.email}</a>
+      <a target="_blank" href="mailto:${manager.email}"><i class="far fa-envelope fa-lg"></i></a>
       <p>Office Number: ${manager.office}</p>
     </div>
   </div>
@@ -299,7 +299,7 @@ function createEngineerCard(engineer) {
       <div class="content">
         <p class="subtitle is-6">${engineer.name}</p>
         <p>Employee ID: ${engineer.id}</p>
-        <a target="_blank" href="mailto:${engineer.email}">${engineer.email}</a>
+        <a target="_blank" href="mailto:${engineer.email}"><i class="far fa-envelope fa-lg"></i></a>
         <p><a target="_blank" href="https://github.com/${engineer.github}">Github</a></p>
       </div>
     </div>
@@ -334,7 +334,7 @@ function createInternCard(intern) {
     <div class="content">
     <p class="subtitle is-6">${intern.name}</p>
     <p>Intern ID: ${intern.id}</p>
-      <a target="_blank" href="mailto:${intern.email}">${intern.email}</a>
+      <a target="_blank" href="mailto:${intern.email}"><i class="far fa-envelope fa-lg"></i></a>
       <p>School: ${intern.school}</p>
       <br>
 
