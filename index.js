@@ -238,7 +238,7 @@ const makeHTML = () => {
   //   console.log(createManagerCard(manager))
   // })
   fs.writeFile('./final/main.html', createTeam(), (err) => {
-    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check *final* folder to see the finished product. ')
+    err ? console.log(err, "Something went wrong :(") : console.log('Team created - check the folder named *final* to see the finished product. ')
   })
 }
 
@@ -254,11 +254,12 @@ function createManagerCard(manager) {
       </div>
       <div class="media-content">
         <p class="title is-4">Manager <i class="fas fa-briefcase"></i></p>
-        <p class="subtitle is-6">${manager.name}</p>
+       
       </div>
     </div>
   
     <div class="content">
+    <p class="subtitle is-6">${manager.name}</p>
       <p>Employee ID: ${manager.id}</p>
       <a target="_blank" href="mailto:${manager.email}">${manager.email}</a>
       <p>Office Number: ${manager.office}</p>
@@ -292,11 +293,11 @@ function createEngineerCard(engineer) {
         </div>
         <div class="media-content">
           <p class="title is-4">Engineer <i class="fas fa-glasses"></i></p>
-          <p class="subtitle is-6">${engineer.name}</p>
         </div>
       </div>
 
       <div class="content">
+        <p class="subtitle is-6">${engineer.name}</p>
         <p>Employee ID: ${engineer.id}</p>
         <a target="_blank" href="mailto:${engineer.email}">${engineer.email}</a>
         <p><a target="_blank" href="https://github.com/${engineer.github}">Github</a></p>
@@ -327,11 +328,11 @@ function createInternCard(intern) {
       </div>
       <div class="media-content">
         <p class="title is-4">Intern <i class="fas fa-user-graduate"></i></p>
-        <p class="subtitle is-6">${intern.name}</p>
       </div>
     </div>
 
     <div class="content">
+    <p class="subtitle is-6">${intern.name}</p>
     <p>Intern ID: ${intern.id}</p>
       <a target="_blank" href="mailto:${intern.email}">${intern.email}</a>
       <p>School: ${intern.school}</p>
@@ -353,8 +354,7 @@ function createInternCollection(){
   })
   return internCollection;
 }
-// function to create manager card in for each
-// 
+
 
 
 // code for creating HTML file all broken - split HTML into different files, trying a different way 
