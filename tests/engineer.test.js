@@ -11,10 +11,11 @@ test("Can set name based on user input", () => {
     expect(e.name).toBe(name);
 });
 
-
-// test('can set employee ID', () => {
-//     const email = 'tonipow3ll@gmail.com';
-//     const e = new Engineer('Toni', 1 , email)});
+test('can set employee ID', () => {
+    const id = 1;
+    const employee = new Engineer('', id, ''); 
+    expect(employee.getId()).toBe(1);
+});
 
 
 test('can set employee email', () => {

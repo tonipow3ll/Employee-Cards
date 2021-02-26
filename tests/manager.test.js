@@ -18,6 +18,12 @@ test('can set employee email', () => {
     expect (e.email).toBe(email)
 });
 
+test('can set Manager ID', () => {
+    const id = 1;
+    const employee = new Manager('', id, ''); 
+    expect(employee.getId()).toBe(1);
+});
+
 test('can set office number', () => {
     const office = 1;
     const e = new Manager('Toni', 1 , "tonipow3ll@gmail.com", office)

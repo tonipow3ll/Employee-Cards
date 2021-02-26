@@ -17,6 +17,12 @@ test('can set employee email', () => {
     expect (e.email).toBe(email)
 });
 
+test('can set Intern ID', () => {
+    const id = 1;
+    const employee = new Intern('', id, ''); 
+    expect(employee.getId()).toBe(1);
+});
+
 test('can set interns School', () => {
     const school = 'tonipow3ll@gmail.com';
     const e = new Intern('Toni', 7 , 'tonipow3ll@gmail.com', school)
