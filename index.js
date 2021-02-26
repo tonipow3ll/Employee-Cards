@@ -57,6 +57,17 @@ makeTeam = () => {
         type: 'input',
         name: 'email',
         message: 'Please enter this Managers email',
+        validate: function (email) {
+  
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+          if (valid) {
+              return true;
+          } else {
+              console.log(".  Please enter a valid email")
+              return false;
+          }
+      }
       },
       {
         type: 'input',
@@ -143,6 +154,17 @@ newEngineer = () => {
         type: 'input',
         name: 'engineeremail',
         message: 'Please enter this Engineers email',
+        validate: function (engineeremail) {
+  
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(engineeremail)
+
+          if (valid) {
+              return true;
+          } else {
+              console.log(".  Please enter a valid email")
+              return false;
+          }
+      }
       },
       {
         type: 'input',
@@ -192,7 +214,16 @@ newIntern = () => {
       {
         type: 'input',
         name: 'internemail',
-        message: "What is this interns email?"
+        message: "What is this interns email?",
+        validate: function (internemail) {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(internemail)
+          if (valid) {
+              return true;
+          } else {
+              console.log(".  Please enter a valid email")
+              return false;
+          }
+      }
       },
       {
         type: 'input',
