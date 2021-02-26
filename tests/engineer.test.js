@@ -7,8 +7,8 @@ test("Can create a new engineer", () => {
 
 test("Can set name based on user input", () => {
     const name = "Toni"
-    const e = new Engineer(name);
-    expect(e.name).toBe(name);
+    const enName = new Engineer(name);
+    expect(enName.getName()).toBe('Toni');
 });
 
 test('can set employee ID', () => {
@@ -18,17 +18,18 @@ test('can set employee ID', () => {
 });
 
 
-test('can set employee email', () => {
+test('can set engineer email', () => {
     const email = 'tonipow3ll@gmail.com';
-    const e = new Engineer('Toni', 1 , email)
-    expect (e.email).toBe( email)
-});
+    const engineer = new Engineer("", "", email);
+    expect(engineer.getEmail()).toBe('tonipow3ll@gmail.com');
+})
+
 
 test('can set employee Github', () => {
     const github = 'tonipow3ll';
-    const e = new Engineer('Toni', 7 , "tonipow3ll@gmail.com", github)
-    expect (e.github).toBe(github);
-});
+    const engineer = new Engineer("", "", "", github);
+    expect (engineer.getGithub()).toBe('tonipow3ll');
+})
 
 
 

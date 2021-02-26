@@ -7,15 +7,15 @@ test("Can create a new intern", () => {
 
 test("Can set name based on user input", () => {
     const name = "Toni"
-    const e = new Intern(name);
-    expect(e.name).toBe(name);
+    const inName = new Intern(name);
+    expect(inName.getName()).toBe('Toni');
 });
 
-test('can set employee email', () => {
+test('can set intern email', () => {
     const email = 'tonipow3ll@gmail.com';
-    const e = new Intern('Toni', 1 , email)
-    expect (e.email).toBe(email)
-});
+    const intern = new Intern("", "", email);
+    expect(intern.getEmail()).toBe('tonipow3ll@gmail.com');
+})
 
 test('can set Intern ID', () => {
     const id = 1;

@@ -8,14 +8,14 @@ test("Can create a new employee", () => {
 
 test("Can set name based on user input", () => {
     const name = "Toni"
-    const e = new Employee(name);
-    expect(e.name).toBe(name);
+    const empName = new Employee(name);
+    expect(empName.getName()).toBe('Toni');
 });
 
 test('can set employee ID', () => {
     const id = 1;
-    const employee = new Employee('', id, ''); 
-    expect(employee.getId()).toBe(1);
+    const employeeid = new Employee('', id, ''); 
+    expect(employeeid.getId()).toBe(1);
 });
 
 test('can set employee email', () => {
@@ -24,6 +24,11 @@ test('can set employee email', () => {
     expect (e.email).toBe(email)
 });
 
+test('can set employee email', () => {
+    const email = 'tonipow3ll@gmail.com';
+    const employee = new Employee("", "", email);
+    expect(employee.getEmail()).toBe('tonipow3ll@gmail.com');
+})
 
 
 
