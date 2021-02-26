@@ -25,8 +25,6 @@ const teamOBJ = {
   interns: []
 }
 
-let manager;
-
 // ON PAGE LOAD - ASKS FOR MANAGER INFO 1ST, THERE IS THE OPTION TO ADD MORE MANAGERS
 makeTeam = () => {
   inquirer
@@ -430,8 +428,4 @@ function createInternCollection(){
 
 
 // code for creating HTML file all broken - split HTML into different files, trying a different way 
-
-// HTML file is being made now, BUT - manager name is returning 'undefined'. 
-// if i change it to ${answer.managername} it breaks
-// ${manager.name} shows - 'Manager' 
 
