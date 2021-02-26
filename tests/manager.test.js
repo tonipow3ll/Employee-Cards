@@ -7,16 +7,16 @@ test("Can create a new manager", () => {
 
 test("Can set name based on user input", () => {
     const name = "Toni"
-    const e = new Manager(name);
-    expect(e.name).toBe(name);
+    const manName = new Manager(name);
+    expect(manName.getName()).toBe('Toni');
 });
 
 
-test('can set employee email', () => {
+test('can set Manager email', () => {
     const email = 'tonipow3ll@gmail.com';
-    const e = new Manager('Toni', 1 , email)
-    expect (e.email).toBe(email)
-});
+    const manager = new Manager("", "", email);
+    expect(manager.getEmail()).toBe('tonipow3ll@gmail.com');
+})
 
 test('can set Manager ID', () => {
     const id = 1;
@@ -26,19 +26,8 @@ test('can set Manager ID', () => {
 
 test('can set office number', () => {
     const office = 1;
-    const e = new Manager('Toni', 1 , "tonipow3ll@gmail.com", office)
-    expect (e.office).toBe(office)
+    const officenum = new Manager('Toni', 1 , "tonipow3ll@gmail.com", office)
+    expect (officenum.getOffice()).toBe(1)
 });
 
     
-// test("Can set Manager ID based on user input", () => {
-//     const ID = "7"
-//     const e = new Manager(ID);
-//     expect(e.ID).toBe(ID);
-// });
-
-// test("Can set Manager Office Number based on user input", () => {
-//     const office = "10"
-//     const e = new Manager(office);
-//     expect(e.office).toBe(office);
-// });
