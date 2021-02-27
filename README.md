@@ -7,6 +7,9 @@
 # ![ScreenShot](https://user-images.githubusercontent.com/72999798/109238223-25a5e080-77a1-11eb-8202-1de554842c96.png)
 ## [View a sample of the final HTML page here](https://tonipow3ll.github.io/Employee-Cards/)
 
+## [View sample video of the application in use](https://drive.google.com/file/d/1-ANM_VOEJkC0NH4vcwE3XNyspw41vTFJ/view?usp=sharing)
+
+
 # Table of Contents
 ### [Installation](#Installation)
 ### [Technologies](#Technologies)
@@ -19,12 +22,14 @@
 # Installation 
 ### Clone repository to your local device, run `npm install` to install any dependencies. To use the application, run `node index.js` in your local machine's terminal.
 
+
 # Technologies
 ### Bulma CSS Framework, node.js, Jest
 
 # Testing
 ### Jest was used for the unit tests in this application. 
 ### To test - ensure that `Jest` is installed, then run `npm test` in your local machine's terminal. 
+### [View sample video of tests being run](https://drive.google.com/file/d/1j108UE9DC0EEI513-jT5mBdC3GC2WDIW/view?usp=sharing)
 
 # Usage
 ### This application was created by Toni Powell. Feel free to reach out via [email](tonipow3ll@gmail.com) or open up a GitHub issue, or pull request if there is something you would like to add. 
