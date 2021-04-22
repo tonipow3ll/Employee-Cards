@@ -1,11 +1,3 @@
-// TO DO 
-// in order of importance
-// add validation for name, email, and ID's 
-  // ID's should only take # inputs, names only strings, emails should be formatted in imanemail@email.com
-// ***once testing, and validation is done - if possible***
-  // refactor code so engineer, intern, manager functions are in their own file. Will have to export the functions and import them to this file. 
-
-
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -13,7 +5,7 @@ const Manager = require("./lib/manager");
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// i don't remember adding this..not sure if i need or if this is a live server thing?
+
 // const { create } = require("domain");
 
 const employee = new Employee();
@@ -33,50 +25,50 @@ makeTeam = () => {
         type: 'input',
         name: 'managername',
         message: 'Please enter Managers name',
-        validate: function (managername){
-          if (managername === ""){
-              return "Field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (managername) {
+          if (managername === "") {
+            return "Field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
         name: 'employeeId',
         message: 'Please enter this Managers ID',
-        validate: function (employeeId){
-          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
-              return "Please enter a valid ID number, field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (employeeId) {
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === "") {
+            return "Please enter a valid ID number, field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
         name: 'email',
         message: 'Please enter this Managers email',
         validate: function (email) {
-  
+
           valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
           if (valid) {
-              return true;
+            return true;
           } else {
-              console.log(".  Please enter a valid email")
-              return false;
+            console.log(".  Please enter a valid email")
+            return false;
           }
-      }
+        }
       },
       {
         type: 'input',
         name: 'office',
         message: 'Please enter this Managers office number',
-        validate: function (office){
-          if (office === NaN || isNaN(office) || office === ""){
-              return "Please enter a valid office number, field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (office) {
+          if (office === NaN || isNaN(office) || office === "") {
+            return "Please enter a valid office number, field cannot be left blank";
+          }
+          return true;
+        }
       }
     ])
     .then((answers) => {
@@ -110,9 +102,9 @@ function newMember() {
       case "Intern":
         newIntern();
         break;
-        case "Manager":
-          makeTeam();
-          break;
+      case "Manager":
+        makeTeam();
+        break;
       case "Thats everyone!":
         makeHTML();
         break;
@@ -130,39 +122,39 @@ newEngineer = () => {
         type: 'input',
         name: 'engineername',
         message: 'Please enter Engineers name',
-        validate: function (engineername){
-          if (engineername === ""){
-              return "Field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (engineername) {
+          if (engineername === "") {
+            return "Field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
         name: 'employeeId',
         message: 'Please enter this Engineers ID',
-        validate: function (employeeId){
-          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
-              return "Please enter a valid ID number, field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (employeeId) {
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === "") {
+            return "Please enter a valid ID number, field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
         name: 'engineeremail',
         message: 'Please enter this Engineers email',
         validate: function (engineeremail) {
-  
+
           valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(engineeremail)
 
           if (valid) {
-              return true;
+            return true;
           } else {
-              console.log(".  Please enter a valid email")
-              return false;
+            console.log(".  Please enter a valid email")
+            return false;
           }
-      }
+        }
       },
       {
         type: 'input',
@@ -191,23 +183,23 @@ newIntern = () => {
         type: 'input',
         name: 'internname',
         message: "What is this interns name?",
-        validate: function (internname){
-          if (internname === ""){
-              return "Field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (internname) {
+          if (internname === "") {
+            return "Field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
         name: 'employeeId',
         message: "What is this interns ID #?",
-        validate: function (employeeId){
-          if (employeeId === NaN || isNaN(employeeId) || employeeId === ""){
-              return "Please enter a valid ID number, field cannot be left blank";
-          } 
-         return true; 
-      }
+        validate: function (employeeId) {
+          if (employeeId === NaN || isNaN(employeeId) || employeeId === "") {
+            return "Please enter a valid ID number, field cannot be left blank";
+          }
+          return true;
+        }
       },
       {
         type: 'input',
@@ -216,12 +208,12 @@ newIntern = () => {
         validate: function (internemail) {
           valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(internemail)
           if (valid) {
-              return true;
+            return true;
           } else {
-              console.log(".  Please enter a valid email")
-              return false;
+            console.log(".  Please enter a valid email")
+            return false;
           }
-      }
+        }
       },
       {
         type: 'input',
@@ -301,7 +293,7 @@ const createTeam = () =>
   
   </html>`
 
-  // FUNCTION FOR MAKING FILE 
+// FUNCTION FOR MAKING FILE 
 const makeHTML = () => {
   // console.log(teamOBJ)
   // teamOBJ.managers.forEach(manager => {
@@ -337,11 +329,11 @@ function createManagerCard(manager) {
   </div>
   </div>`
 }
-// ============================================================================================================================================
+// =========================c===================================================================================================================
 // iterate over each array in teamOBJ, create an 'managercard' for EACH manager. This allows a user to add more than 1 manager if applicable 
 // ============================================================================================================================================
 
-function createManagerCollection(){
+function createManagerCollection() {
   let managerCollection = "";
   teamOBJ.managers.forEach(manager => {
     managerCollection += createManagerCard(manager);
@@ -378,7 +370,7 @@ function createEngineerCard(engineer) {
 // ================================================================
 // iterate over each array in teamOBJ, create an 'engineercard' for EACH engineer. 
 // ================================================================
-function createEngineerCollection(){
+function createEngineerCollection() {
   let engineerCollection = "";
   teamOBJ.engineers.forEach(engineer => {
     engineerCollection += createEngineerCard(engineer);
@@ -417,7 +409,7 @@ function createInternCard(intern) {
 // iterate over each array in teamOBJ, create an 'interncard' for EACH intern. 
 // ================================================================
 
-function createInternCollection(){
+function createInternCollection() {
   let internCollection = "";
   teamOBJ.interns.forEach(intern => {
     internCollection += createInternCard(intern);
@@ -425,7 +417,4 @@ function createInternCollection(){
   return internCollection;
 }
 
-
-
-// code for creating HTML file all broken - split HTML into different files, trying a different way 
 
